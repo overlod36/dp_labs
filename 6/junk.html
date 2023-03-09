@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+Examining junk.c <br>
+
+<h2>Final Results</h2>
+<ul>
+<li>junk.c:5: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>junk.c:7: <b>  [1] </b> (buffer) <i> fscanf:
+  It's unclear if the %s limit in the format string is small enough (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Check
+  that the limit is sufficiently small, or use a different input function. </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 2
+<br>
+Lines analyzed = 9 in approximately 0.01 seconds (937 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 7
+<br>
+Hits@level = [0]   1 [1]   1 [2]   1 [3]   0 [4]   0 [5]   0 <br>
+Hits@level+ = [0+]   3 [1+]   2 [2+]   1 [3+]   0 [4+]   0 [5+]   0 <br>
+Hits/KSLOC@level+ = [0+] 428.571 [1+] 285.714 [2+] 142.857 [3+]   0 [4+]   0 [5+]   0 <br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>

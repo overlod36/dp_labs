@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+Examining flawtest.c <br>
+
+<h2>Final Results</h2>
+<ul>
+<li>flawtest.c:17: <b>  [5] </b> (buffer) <i> strncat:
+  Easily used incorrectly (e.g., incorrectly computing the correct maximum
+  size to add) [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider strcat_s, strlcat, snprintf, or automatically resizing strings.
+  Risk is high; the length parameter appears to be a constant, instead of
+  computing the number of characters left. </i>
+<li>flawtest.c:18: <b>  [5] </b> (buffer) <i> _tcsncat:
+  Easily used incorrectly (e.g., incorrectly computing the correct maximum
+  size to add) [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider strcat_s, strlcat, or automatically resizing strings. Risk is
+  high; the length parameter appears to be a constant, instead of computing
+  the number of characters left. </i>
+<li>flawtest.c:21: <b>  [5] </b> (buffer) <i> MultiByteToWideChar:
+  Requires maximum length in CHARACTERS, not bytes (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Risk
+  is high, it appears that the size is given as bytes, but the function
+  requires size as characters. </i>
+<li>flawtest.c:10: <b>  [4] </b> (buffer) <i> _mbscpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using a function version that stops copying at the end of the
+  buffer. </i>
+<li>flawtest.c:13: <b>  [4] </b> (buffer) <i> lstrcat:
+  Does not check for buffer overflows when concatenating to destination
+  [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>flawtest.c:6: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>flawtest.c:7: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>flawtest.c:11: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>flawtest.c:12: <b>  [2] </b> (buffer) <i> CopyMemory:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>flawtest.c:14: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>flawtest.c:15: <b>  [1] </b> (buffer) <i> _tcsncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>flawtest.c:16: <b>  [1] </b> (buffer) <i> strncat:
+  Easily used incorrectly (e.g., incorrectly computing the correct maximum
+  size to add) [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider strcat_s, strlcat, snprintf, or automatically resizing strings. </i>
+<li>flawtest.c:19: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>flawtest.c:23: <b>  [1] </b> (buffer) <i> MultiByteToWideChar:
+  Requires maximum length in CHARACTERS, not bytes (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Risk
+  is very low, the length appears to be in characters not bytes. </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 14
+<br>
+Lines analyzed = 26 in approximately 0.01 seconds (2898 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 17
+<br>
+Hits@level = [0]   0 [1]   5 [2]   4 [3]   0 [4]   2 [5]   3 <br>
+Hits@level+ = [0+]  14 [1+]  14 [2+]   9 [3+]   5 [4+]   5 [5+]   3 <br>
+Hits/KSLOC@level+ = [0+] 823.529 [1+] 823.529 [2+] 529.412 [3+] 294.118 [4+] 294.118 [5+] 176.471 <br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>
